@@ -1,9 +1,12 @@
 @import url('/build/smui.css');
+html, body {
+    overflow-x: hidden;
+}
 .test {
     span {
         color: blue;
     }
 }
 .active {
-    color: red;
+    color: red !important; 
 }

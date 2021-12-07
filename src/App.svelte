@@ -9,26 +9,17 @@
 <script>
   // import logo from './assets/svelte.png'
   import './index.scss'
-  import { Router, Link, Route } from 'svelte-routing'
-  import Counter from './lib/Counter.svelte'
-  import Home from './lib/Home.svelte'
+  import { Router, Route } from 'svelte-routing'
+  import Link from './component/Link'
+  import Counter from './lib/Counter'
+  import Home from './lib/Home'
   import Test from './lib/Test'
   import About from './lib/About'
-
-  function getProps({ isCurrent, isPartiallyCurrent, href, location }) {
-    const isActive = href === "/" ? isCurrent : isPartiallyCurrent || isCurrent;
-
-    // The object returned here is spread on the anchor element's attributes
-    if (isActive) {
-      return { class: "active" };
-    }
-    return {};
-  }
 </script>
 
 <Router>
   <nav>
-    <Link to="/" state="{{a:1, b:2}}"  getProps={getProps}>Home</Link>
+    <Link to="/" state="{{a:1, b:2}}">Home</Link>
     <Link to="Counter" replace>Counter</Link>
     <Link to="Test">Test</Link>
     <Link to="About/2">About</Link>
@@ -39,7 +30,7 @@
     <Route path="Test" component={Test}/>
     <Route path="About/:id" let:params><About id={params.id}/></Route>
   </div>
-  <footer class="active">底部内容</footer>
+  <!-- <footer class="active">底部内容</footer> -->
 </Router>
 
 <style lang="scss">

@@ -1,5 +1,6 @@
 <script>
 import { getContext, onMount } from 'svelte'
+import { fade, fly } from 'svelte/transition'
 import { navigate } from 'svelte-routing'
 import Button, { Label } from '@smui/button';
 export let location
@@ -15,18 +16,18 @@ function toggle() {
 function toTest() {
     navigate('/Test')
 }
-console.log(location)
 </script>
 
+<main in:fly={{ x: 2000, duration: 400 }}>
 <div class:on={true}>
     首页
     <slot></slot>
 </div>
 
 {#if user.login}
-    <button on:click={toggle}>login in</button>
+    <button in:fly={{ delay: 200, duration: 3000 }}  on:click={toggle}>login in</button>
 {:else}
-    <button on:click={toggle}>login out</button>
+    <button in:fly={{ delay: 200, duration: 3000 }} on:click={toggle}>login out</button>
 {/if}
 
 {#each List as item,i (item.id)}
@@ -43,3 +44,4 @@ console.log(location)
 </Button>
 
 <h1>点击数量：{clicked}</h1>
+</main>
